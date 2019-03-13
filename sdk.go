@@ -91,7 +91,9 @@ func (c ExtensionsClient) CreateExtension(data []byte) (management.OperationID, 
 // UpdateExtension sends the given extension handler definition XML to issue and update
 // request. Returned operation ID should be polled for result.
 func (c ExtensionsClient) UpdateExtension(data []byte) (management.OperationID, error) {
+	lg.Debug("Doing a Get Call now.")
 	c.client.SendAzureGetRequest("services/publisherextensions")
+	lg.Debug("Doing a Put Call now.")
 	return c.client.SendAzurePutRequest("services/extensions?action=update", "text/xml", data)
 }
 
